@@ -1,0 +1,17 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" font-family="Cascadia Code, Consolas, monospace">
+  <rect width="800" height="450" fill="#0a0e13"/>
+  <rect x="60" y="40" width="680" height="370" rx="12" fill="#10161d" stroke="#223041" stroke-width="2"/>
+  <rect x="60" y="40" width="680" height="40" rx="12" fill="#141b24"/>
+  <text x="90" y="66" fill="#93a4b5" font-size="15">PlayerStats.cs — one attribute is all it takes</text>
+  <g font-size="17">
+    <text x="95" y="125" fill="#7c8b9c">// Mark fields to persist</text>
+    <text x="95" y="160" fill="#c586c0">public class <tspan fill="#4ec9b0">PlayerStats</tspan> : <tspan fill="#4ec9b0">MonoBehaviour</tspan></text>
+    <text x="95" y="190" fill="#e6edf3">{</text>
+    <text x="125" y="222" fill="#dcdcaa">[SmartSave]</text><text x="250" y="222" fill="#569cd6"> public int</text><text x="380" y="222" fill="#9cdcfe"> coins;</text>
+    <text x="125" y="254" fill="#dcdcaa">[SmartSave]</text><text x="250" y="254" fill="#569cd6"> public float</text><text x="392" y="254" fill="#9cdcfe"> health;</text>
+    <text x="125" y="286" fill="#dcdcaa">[SmartSave]</text><text x="250" y="286" fill="#569cd6"> public Vector3</text><text x="422" y="286" fill="#9cdcfe"> checkpoint;</text>
+    <text x="95" y="330" fill="#7c8b9c">   // Save everything, encrypted:</text>
+    <text x="125" y="362" fill="#4ec9b0">SmartSave</text><text x="228" y="362" fill="#e6edf3">.Save();</text>
+    <text x="95" y="394" fill="#e6edf3">}</text>
+  </g>
+</svg>

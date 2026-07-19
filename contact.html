@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — RealCut</title>
+  <meta name="description" content="Contact RealCut — email, message form and GitHub.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Say hello</span>
+        <h1>Contact</h1>
+        <p>Questions, feedback, feature requests or business inquiries — all welcome.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="align-items:start">
+          <div style="display:grid; gap:1.2rem">
+            <div class="card info-tile">
+              <div class="ico">✉️</div>
+              <div>
+                <h3>Email</h3>
+                <p><a href="mailto:amm540198@gmail.com">amm540198@gmail.com</a><br>Replies typically within 48 hours.</p>
+              </div>
+            </div>
+            <div class="card info-tile">
+              <div class="ico">🐙</div>
+              <div>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/thamer-21" target="_blank" rel="noopener">github.com/thamer-21</a><br>Open-source experiments and samples.</p>
+              </div>
+            </div>
+            <div class="card info-tile">
+              <div class="ico">🛒</div>
+              <div>
+                <h3>Unity Asset Store</h3>
+                <p><a href="https://assetstore.unity.com/" target="_blank" rel="noopener">RealCut publisher page</a><br>Reviews and questions on asset pages are checked regularly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 style="font-size:1.3rem; margin-bottom:1.2rem">Send a message</h2>
+            <form id="contact-form" class="form-grid">
+              <div>
+                <label for="cf-name">Name</label>
+                <input id="cf-name" name="name" type="text" placeholder="Your name" required>
+              </div>
+              <div>
+                <label for="cf-email">Email</label>
+                <input id="cf-email" name="email" type="email" placeholder="you@example.com" required>
+              </div>
+              <div>
+                <label for="cf-topic">Topic</label>
+                <select id="cf-topic" name="topic">
+                  <option>General question</option>
+                  <option>Bug report</option>
+                  <option>Feature request</option>
+                  <option>Business inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label for="cf-msg">Message</label>
+                <textarea id="cf-msg" name="message" placeholder="How can I help?" required></textarea>
+              </div>
+              <div class="form-success" id="cf-success">✓ Your email app should open now with the message ready to send. Thank you!</div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <p class="form-note">Submitting opens your email app — the message is sent from your own address, nothing is stored on this site.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const f = e.target;
+      const subject = encodeURIComponent(`[${f.topic.value}] Message from ${f.name.value}`);
+      const body = encodeURIComponent(`${f.message.value}\n\n— ${f.name.value} (${f.email.value})`);
+      window.location.href = `mailto:amm540198@gmail.com?subject=${subject}&body=${body}`;
+      document.getElementById("cf-success").classList.add("show");
+    });
+  </script>
+</body>
+</html>

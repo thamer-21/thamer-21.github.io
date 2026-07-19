@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — RealCut</title>
+  <meta name="description" content="Documentation for RealCut Unity assets: installation, quick start, settings reference and examples.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="docs">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Learn</span>
+        <h1>Documentation</h1>
+        <p>Everything you need to install, configure and master RealCut assets. Video tutorials and PDF guides are included with each asset package.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container docs-layout">
+        <aside class="docs-nav">
+          <h4>On this page</h4>
+          <ul>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#settings">Settings Reference</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#resources">PDF &amp; Videos</a></li>
+          </ul>
+        </aside>
+
+        <div class="docs-body">
+          <h2 id="installation">📦 Installation</h2>
+          <ol>
+            <li>Open your project in Unity <strong>2021.3 LTS or newer</strong>.</li>
+            <li>Go to <code>Window → Package Manager → My Assets</code>.</li>
+            <li>Find the RealCut asset you purchased and click <strong>Download</strong>, then <strong>Import</strong>.</li>
+            <li>Keep all files selected and press <strong>Import</strong>. A <code>RealCut/</code> folder appears in your project.</li>
+          </ol>
+          <p>No extra packages or scripting-define symbols are required — every asset is pure C# with zero dependencies.</p>
+
+          <h2 id="quick-start">🚀 Quick Start</h2>
+          <h3>Smart Save System</h3>
+          <pre><code>// 1. Add the SmartSaveManager prefab to your first scene.
+// 2. Mark fields you want persisted:
+public class PlayerStats : MonoBehaviour
+{
+    [SmartSave] public int coins;
+    [SmartSave] public float health;
+}
+
+// 3. Save or load anywhere:
+SmartSave.Save();          // write current state
+SmartSave.Load();          // restore last save
+SmartSave.Save("slot-2");  // named save slots</code></pre>
+
+          <h3>Advanced Inventory System</h3>
+          <pre><code>// 1. Create items: right-click → Create → RealCut → Item Definition
+// 2. Drop the InventoryPanel prefab into your Canvas.
+// 3. Add items from code:
+Inventory.Main.Add(itemDefinition, amount: 3);
+
+// Listen for changes:
+InventoryEvents.OnItemAdded += item =>
+    Debug.Log($"Picked up {item.DisplayName}");</code></pre>
+
+          <h2 id="settings">⚙️ Settings Reference</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Setting</th><th>Default</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td><code>Auto Save</code></td><td>On</td><td>Automatically saves at the configured interval and on application quit.</td></tr>
+                <tr><td><code>Save Interval</code></td><td>120 s</td><td>Seconds between auto-saves. Set to 0 to disable timed saves.</td></tr>
+                <tr><td><code>Encryption</code></td><td>AES-256</td><td>Encryption mode for save files: None, XOR (fast) or AES-256 (secure).</td></tr>
+                <tr><td><code>Save Slots</code></td><td>3</td><td>Number of named slots shown in the built-in save browser.</td></tr>
+                <tr><td><code>Grid Size</code></td><td>10 × 6</td><td>Inventory grid dimensions. Can be changed at runtime.</td></tr>
+                <tr><td><code>Stack Limit</code></td><td>99</td><td>Maximum stack size per item, overridable per ItemDefinition.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="examples">💡 Examples</h2>
+          <p>Every asset ships with commented demo scenes under <code>RealCut/&lt;Asset&gt;/Demos/</code>:</p>
+          <ul>
+            <li><strong>Basic Save</strong> — saving player position, stats and settings in one scene.</li>
+            <li><strong>Save Slots UI</strong> — a ready-made "Continue / New Game" menu you can reskin.</li>
+            <li><strong>RPG Inventory</strong> — grid inventory with equipment slots and tooltips.</li>
+            <li><strong>Crafting Bench</strong> — recipe setup, queues and result callbacks.</li>
+          </ul>
+
+          <h2 id="resources">📄 PDF Guides &amp; Video Tutorials</h2>
+          <p>Each asset package includes a full <strong>PDF manual</strong> in <code>RealCut/&lt;Asset&gt;/Documentation/</code>. Video walkthroughs (installation, quick start, deep dives) are published on the product pages and linked from the PDF.</p>
+          <p>Can't find what you need? <a href="support.html">Contact support</a> — replies typically within 48 hours.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
