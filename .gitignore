@@ -1,1 +1,12 @@
 .claude/
+
+# Paid Unity asset source — must NOT be published to the public website repo.
+UnityAssets/
+
+# Internal working files — marketing sources, store-listing drafts, private
+# notes and tooling. These live in this folder for convenience but are NOT part
+# of the public website and must never be served from GitHub Pages.
+Inventory-Store/
+SmartSave-Store/
+Tools/
+NEXT_STEPS.md

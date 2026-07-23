@@ -51,7 +51,7 @@ function renderFooter() {
           <ul>
             <li><a href="products.html">All Assets</a></li>
             <li><a href="product.html?id=smart-save">Smart Save System</a></li>
-            <li><a href="product.html?id=advanced-inventory">Advanced Inventory</a></li>
+            <li><a href="product.html?id=smart-inventory">Smart Inventory System</a></li>
           </ul>
         </div>
         <div>

@@ -159,6 +159,49 @@ img { max-width: 100%; display: block; }
 }
 .btn-store:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); }
 
+/* A "Coming soon" action: looks like a button, does nothing, never a dead link. */
+.btn.is-disabled {
+  background: transparent;
+  color: var(--text-dim);
+  border-color: var(--border);
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.75;
+}
+.btn.is-disabled:hover { transform: none; box-shadow: none; }
+
+/* Price shown on a product's detail spec list. */
+.price-tag { font-weight: 700; color: var(--text); }
+.price-tag.free { color: var(--accent); }
+.price-offer {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.07);
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+}
+
+/* "Coming soon" ribbon across a product card's thumbnail. */
+.thumb { position: relative; }
+.ribbon {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #06121a;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+  padding: 0.22rem 0.7rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;

@@ -1,37 +1,43 @@
 /* RealCut — product catalog data + render logic.
-   NOTE: These are sample/showcase entries for the publisher portfolio.
-   Replace images, links and copy with real asset data before going live. */
+   Real asset data. `status` drives the card/button: "coming-soon" shows a
+   disabled button and hides the (not-yet-real) store link; "live" shows a
+   working Buy button. Flip Smart Save to "live" and fill storeUrl on launch. */
 
 const PRODUCTS = {
   "smart-save": {
     name: "Smart Save System",
-    tagline: "A complete, encrypted save & load solution for Unity — set up in minutes.",
+    tagline: "A complete, encrypted save & load framework for Unity — two simple APIs, zero setup.",
     shortDesc:
-      "Plug-and-play save/load framework with AES encryption, auto-save, multiple slots and cloud-ready serialization.",
-    version: "1.3.0",
+      "Encrypted save/load with multiple slots, auto-save, versioning & migration, a ready-made slot UI and an in-editor Save Debugger.",
+    version: "1.0.0",
     unity: "2021.3 LTS – Unity 6",
-    updated: "July 2026",
-    price: "$24.99",
+    updated: "Launching soon",
+    price: "$19.99",
+    status: "coming-soon",
+    launchOffer: "30% off launch week",
     category: "Tools / Utilities",
-    storeUrl: "https://assetstore.unity.com/",
+    storeUrl: "",
     images: [
       "assets/img/smart-save-1.svg",
       "assets/img/smart-save-2.svg",
       "assets/img/smart-save-3.svg",
     ],
     features: [
-      "<strong>One-line saving</strong> — save any object with a single attribute, no boilerplate code.",
-      "<strong>AES-256 encryption</strong> — protect player data from tampering out of the box.",
-      "<strong>Auto-save & save slots</strong> — configurable intervals and unlimited named slots.",
-      "<strong>Cloud-ready</strong> — JSON serialization compatible with Steam Cloud & PlayFab.",
-      "<strong>Cross-platform</strong> — PC, mobile, WebGL and consoles with one API.",
-      "<strong>Zero dependencies</strong> — pure C#, no third-party packages required.",
+      "<strong>Two APIs</strong> — simple key/value (<code>SmartSave.Set/Get</code>) and <code>[SmartSave]</code> attribute auto-capture.",
+      "<strong>AES-256 encryption</strong> (or XOR / none) with optional GZip compression.",
+      "<strong>Async saving</strong> — non-blocking writes so large saves never hitch your frame rate.",
+      "<strong>Multiple save slots</strong> with automatic gameplay screenshots and metadata.",
+      "<strong>Ready-made Save Slots menu</strong> (uGUI + TextMeshPro) with delete confirmation.",
+      "<strong>Auto Save Manager</strong> — timer, scene change, checkpoint, pause or quit triggers.",
+      "<strong>Save versioning & migration</strong> — old player saves keep working across updates.",
+      "<strong>In-editor Save Debugger</strong> — inspect, edit, export and delete saves as you develop.",
+      "<strong>Cross-platform, zero dependencies</strong> — PC, mobile, WebGL, consoles · IL2CPP & Mono.",
     ],
     howToUse: [
       "Import the package from the Unity Asset Store.",
-      "Add the <code>SmartSaveManager</code> prefab to your first scene.",
-      "Mark any field you want persisted with the <code>[SmartSave]</code> attribute.",
-      "Call <code>SmartSave.Save()</code> and <code>SmartSave.Load()</code> — that's it.",
+      "Call <code>SmartSave.Set(\"coins\", 100)</code> then <code>SmartSave.Save()</code> — encrypted, on disk.",
+      "Or mark fields with <code>[SmartSave]</code> and add a <code>SaveableEntity</code> component.",
+      "Call <code>SmartSave.Load()</code> — everything comes back. That's it.",
     ],
     compatibility: [
       ["Unity 2021.3 LTS", "yes"],
@@ -41,70 +47,88 @@ const PRODUCTS = {
       ["IL2CPP & Mono", "yes"],
     ],
     changelog: [
-      ["v1.3.0", "July 2026", "Added Unity 6 support, new visual save-slot browser window, WebGL IndexedDB backend."],
-      ["v1.2.1", "April 2026", "Fixed auto-save timing issue on scene reload; performance improvements for large save files."],
-      ["v1.2.0", "February 2026", "Added AES-256 encryption option and save-file versioning/migration API."],
-      ["v1.0.0", "November 2025", "Initial release."],
+      ["v1.0.0", "Launching soon", "Initial release — two APIs, AES-256 encryption, slots, auto-save, versioning, ready-made slot UI and Save Debugger."],
     ],
     faq: [
       ["Does it work with my existing project?", "Yes — Smart Save System is additive. You mark the fields you want saved and it never touches the rest of your code."],
-      ["Can I save custom classes?", "Absolutely. Any serializable class works, and you can write custom converters for special types."],
-      ["Is multiplayer supported?", "The system is local-first, but its JSON output can be synced through any backend (PlayFab, Firebase, your own server)."],
-      ["Do I get updates for free?", "Yes, all 1.x updates are free for existing customers on the Unity Asset Store."],
+      ["Can I save custom classes?", "Yes. Any [Serializable] type works — Vector3, Color and your own classes included."],
+      ["Will player saves break when I update my game?", "No. Built-in save versioning and migration callbacks keep old saves loading across updates."],
+      ["Does it have dependencies?", "None. Pure C# with full source; TextMeshPro (built into Unity) is only used by the optional ready-made menu."],
     ],
   },
 
-  "advanced-inventory": {
-    name: "Advanced Inventory System",
-    tagline: "Grid-based inventory with drag & drop, crafting and full UI — ready for your RPG or survival game.",
+  "smart-inventory": {
+    name: "Smart Inventory System",
+    tagline: "An integration-first inventory framework that drops into the game you already have.",
     shortDesc:
-      "Feature-complete inventory framework: grid & list layouts, drag-and-drop, stacking, crafting recipes and equipment slots.",
-    version: "2.1.0",
-    unity: "2021.3 LTS – Unity 6",
-    updated: "June 2026",
-    price: "$34.99",
+      "A clean, layered inventory framework — stacking, categories, equipment and a polished UI — designed to fit your existing project, not replace it. Free.",
+    version: "1.0.0",
+    unity: "Unity 6 (6000.5)",
+    updated: "Coming soon",
+    price: "Free",
+    status: "coming-soon",
     category: "Systems / Gameplay",
-    storeUrl: "https://assetstore.unity.com/",
+    storeUrl: "",
     images: [
       "assets/img/inventory-1.svg",
       "assets/img/inventory-2.svg",
       "assets/img/inventory-3.svg",
     ],
     features: [
-      "<strong>Grid & list layouts</strong> — Resident-Evil-style grids or classic RPG lists, switchable at runtime.",
-      "<strong>Drag, drop & stack</strong> — polished interactions with ghost previews and stack splitting.",
-      "<strong>Crafting system</strong> — recipe ScriptableObjects with ingredient validation and crafting queues.",
-      "<strong>Equipment slots</strong> — weapon, armor and accessory slots with stat modifiers.",
-      "<strong>Save integration</strong> — works out of the box with Smart Save System.",
-      "<strong>UGUI + UI Toolkit</strong> — prefabs for both UI systems included.",
+      "<strong>Integration-first</strong> — a strictly layered architecture (Data / Runtime / Service / UI) that drops into an existing project without taking it over.",
+      "<strong>Stacking, categories, tags, rarity & weight</strong> — the inventory model most games actually need.",
+      "<strong>Equipment slots</strong> with per-slot constraints.",
+      "<strong>Polished AAA UI</strong> — grid & list, drag & drop with ghost preview, tooltips, context menu, hotbar, search, sort, filter and themes.",
+      "<strong>Any save system</strong> — ID-based runtime state; first-class Smart Save integration, never required.",
+      "<strong>Engine-light, testable core</strong> — quest/inventory logic provable without entering Play mode.",
     ],
     howToUse: [
       "Import the package and open the included demo scene.",
-      "Create your items as <code>ItemDefinition</code> ScriptableObjects.",
-      "Drop the <code>InventoryPanel</code> prefab into your canvas.",
-      "Hook pickup/use events through the built-in <code>InventoryEvents</code> API.",
+      "Define your items as ScriptableObject definitions.",
+      "Drop the inventory UI prefab into your canvas.",
+      "Drive it through the typed event system — no manager forced into your bootstrap.",
     ],
     compatibility: [
-      ["Unity 2021.3 LTS", "yes"],
-      ["Unity 2022.3 LTS", "yes"],
-      ["Unity 2023 / Unity 6", "yes"],
-      ["UGUI", "yes"],
-      ["UI Toolkit", "yes"],
+      ["Unity 6 (6000.5)", "yes"],
+      ["Built-in / URP / HDRP", "yes"],
+      ["uGUI + TextMeshPro", "yes"],
+      ["IL2CPP & Mono", "yes"],
+      ["Works with Smart Save", "yes"],
     ],
     changelog: [
-      ["v2.1.0", "June 2026", "Added UI Toolkit prefab set, controller/gamepad navigation and item tooltip designer."],
-      ["v2.0.0", "March 2026", "Major rewrite: new crafting queue system, equipment stat modifiers, 40% faster grid rendering."],
-      ["v1.5.0", "December 2025", "Added stack splitting, item rarity tiers and localization support."],
-      ["v1.0.0", "September 2025", "Initial release."],
+      ["v1.0.0", "Coming soon", "Initial free release — layered inventory framework with a full UI kit and developer tools."],
     ],
     faq: [
-      ["Does it include example art?", "Yes — a full set of demo item icons and UI sprites is included (CC0, safe to ship)."],
-      ["Can I use my own UI design?", "Yes. All visuals are plain prefabs — restyle them or bind the API to your own UI."],
-      ["Does it support gamepads?", "Yes, full controller navigation was added in v2.1.0."],
-      ["Does it work with Smart Save System?", "Yes, first-class integration is included — inventories persist with one checkbox."],
+      ["How much does it cost?", "It's free — released to introduce RealCut and give developers a clean inventory foundation to build on."],
+      ["Do I have to adopt a whole ecosystem?", "No. That's the whole point: it's a layer that fits your existing architecture, UI and save system — not a host that replaces them."],
+      ["Can I use my own UI?", "Yes. The UI is optional and replaceable; the framework is fully usable with zero UI."],
+      ["Does it work with Smart Save System?", "Yes — first-class integration in one line, and never a hard dependency."],
     ],
   },
 };
+
+/* ---- shared helpers ---- */
+function isComingSoon(p) {
+  return p.status === "coming-soon" || !p.storeUrl;
+}
+
+// The primary action for a product. Coming-soon assets show a disabled button
+// instead of a dead store link — no false "Buy" before the asset is purchasable.
+function storeButton(p, label) {
+  if (isComingSoon(p)) {
+    return `<span class="btn btn-store is-disabled" aria-disabled="true">Coming soon</span>`;
+  }
+  return `<a class="btn btn-store" href="${p.storeUrl}" target="_blank" rel="noopener">${label} — ${p.price}</a>`;
+}
+
+// Price line: "Free", or the price with an optional launch-offer note.
+function priceLine(p) {
+  if (p.price === "Free") return `<span class="price-tag free">Free</span>`;
+  const offer = p.launchOffer
+    ? ` <span class="price-offer">${p.launchOffer}</span>`
+    : "";
+  return `<span class="price-tag">${p.price}</span>${offer}`;
+}
 
 /* ---- Products listing page ---- */
 function renderProductGrid(containerId) {
@@ -114,18 +138,21 @@ function renderProductGrid(containerId) {
     .map(
       ([id, p]) => `
     <article class="product-card">
-      <a class="thumb" href="product.html?id=${id}"><img src="${p.images[0]}" alt="${p.name} cover image"></a>
+      <a class="thumb" href="product.html?id=${id}">
+        <img src="${p.images[0]}" alt="${p.name} cover image">
+        ${isComingSoon(p) ? '<span class="ribbon">Coming soon</span>' : ""}
+      </a>
       <div class="body">
         <div class="meta-row">
           <span class="badge accent">v${p.version}</span>
           <span class="badge">Unity ${p.unity}</span>
-          <span class="badge">Updated ${p.updated}</span>
+          <span class="badge">${p.price === "Free" ? "Free" : p.price}</span>
         </div>
         <h3><a href="product.html?id=${id}">${p.name}</a></h3>
         <p class="desc">${p.shortDesc}</p>
         <div class="card-actions">
           <a class="btn btn-outline" href="product.html?id=${id}">Details</a>
-          <a class="btn btn-store" href="${p.storeUrl}" target="_blank" rel="noopener">Buy on Unity Store — ${p.price}</a>
+          ${storeButton(p, "View on Unity Store")}
         </div>
       </div>
     </article>`
@@ -193,13 +220,14 @@ function renderProductPage() {
           <h1>${p.name}</h1>
           <p class="lead">${p.tagline}</p>
           <ul class="spec-list">
-            <li><span class="k">Current version</span><span class="v">v${p.version}</span></li>
+            <li><span class="k">Version</span><span class="v">v${p.version}</span></li>
             <li><span class="k">Supported Unity</span><span class="v">${p.unity}</span></li>
-            <li><span class="k">Last update</span><span class="v">${p.updated}</span></li>
+            <li><span class="k">Status</span><span class="v">${p.updated}</span></li>
+            <li><span class="k">Price</span><span class="v">${priceLine(p)}</span></li>
             <li><span class="k">Category</span><span class="v">${p.category}</span></li>
           </ul>
           <div class="card-actions">
-            <a class="btn btn-store" href="${p.storeUrl}" target="_blank" rel="noopener">Buy on Unity Asset Store — ${p.price}</a>
+            ${storeButton(p, "View on Unity Asset Store")}
             <a class="btn btn-outline" href="docs.html">Documentation</a>
           </div>
         </div>
@@ -249,9 +277,20 @@ function renderProductPage() {
     </section>
 
     <section class="detail-section" style="text-align:center">
-      <a class="btn btn-store" href="${p.storeUrl}" target="_blank" rel="noopener" style="font-size:1.05rem;padding:0.9rem 2.2rem">
-        Buy ${p.name} on the Unity Asset Store — ${p.price}
-      </a>
+      ${
+        isComingSoon(p)
+          ? `<p style="color:var(--text-dim);margin-bottom:1rem">${
+              p.price === "Free"
+                ? "Free on the Unity Asset Store — coming soon."
+                : `Launching soon on the Unity Asset Store at ${p.price}${
+                    p.launchOffer ? ` · ${p.launchOffer}` : ""
+                  }.`
+            }</p>
+             <span class="btn btn-store is-disabled" aria-disabled="true" style="font-size:1.05rem;padding:0.9rem 2.2rem">Coming soon</span>`
+          : `<a class="btn btn-store" href="${p.storeUrl}" target="_blank" rel="noopener" style="font-size:1.05rem;padding:0.9rem 2.2rem">
+               View ${p.name} on the Unity Asset Store — ${p.price}
+             </a>`
+      }
     </section>
   </div>`;
 
