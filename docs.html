@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation — RealCut</title>
-  <meta name="description" content="Documentation for RealCut Unity assets: installation, quick start, settings reference and examples.">
+  <meta name="description" content="Installing and getting started with RealCut Unity assets: Smart Stats, Smart Quest, Smart Inventory and Smart Save.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,7 +16,7 @@
       <div class="container">
         <span class="eyebrow">Learn</span>
         <h1>Documentation</h1>
-        <p>Everything you need to install, configure and master RealCut assets. Video tutorials and PDF guides are included with each asset package.</p>
+        <p>Installing the assets and the first few lines of each one. The full manual for every asset ships inside its own package.</p>
       </div>
     </section>
 
@@ -26,75 +26,100 @@
           <h4>On this page</h4>
           <ul>
             <li><a href="#installation">Installation</a></li>
-            <li><a href="#quick-start">Quick Start</a></li>
-            <li><a href="#settings">Settings Reference</a></li>
-            <li><a href="#examples">Examples</a></li>
-            <li><a href="#resources">PDF &amp; Videos</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#stats">Smart Stats</a></li>
+            <li><a href="#quest">Smart Quest</a></li>
+            <li><a href="#inventory">Smart Inventory</a></li>
+            <li><a href="#save">Smart Save</a></li>
+            <li><a href="#in-package">Inside each package</a></li>
           </ul>
         </aside>
 
         <div class="docs-body">
-          <h2 id="installation">📦 Installation</h2>
+          <h2 id="installation">Installation</h2>
           <ol>
-            <li>Open your project in Unity <strong>2021.3 LTS or newer</strong>.</li>
+            <li>Open your project in Unity <strong>2022.3 LTS or newer</strong>.</li>
             <li>Go to <code>Window → Package Manager → My Assets</code>.</li>
-            <li>Find the RealCut asset you purchased and click <strong>Download</strong>, then <strong>Import</strong>.</li>
-            <li>Keep all files selected and press <strong>Import</strong>. A <code>RealCut/</code> folder appears in your project.</li>
+            <li>Find the asset, then <strong>Download</strong> and <strong>Import</strong>.</li>
+            <li>Keep every file selected. The asset lands in its own top-level folder — for example <code>Assets/SmartStatsSystem/</code>.</li>
           </ol>
-          <p>No extra packages or scripting-define symbols are required — every asset is pure C# with zero dependencies.</p>
 
-          <h2 id="quick-start">🚀 Quick Start</h2>
-          <h3>Smart Save System</h3>
-          <pre><code>// 1. Add the SmartSaveManager prefab to your first scene.
-// 2. Mark fields you want persisted:
+          <h2 id="requirements">Requirements</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Asset</th><th>Unity</th><th>Package dependencies</th></tr></thead>
+              <tbody>
+                <tr><td>Smart Stats System</td><td>2022.3 LTS – Unity 6</td><td class="yes">None</td></tr>
+                <tr><td>Smart Quest System</td><td>2022.3 LTS – Unity 6</td><td>TextMeshPro, for the optional UI</td></tr>
+                <tr><td>Smart Inventory System</td><td>2022.3 LTS – Unity 6</td><td>TextMeshPro, for the UI layer</td></tr>
+                <tr><td>Smart Save System</td><td>2022.3 LTS – Unity 6</td><td>TextMeshPro, for the optional slot menu</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>TextMeshPro is part of Unity 6. On Unity 2022.3 it is a separate Package Manager package that is included in every standard project template — if your project does not have it, install <code>com.unity.textmeshpro</code> and import its Essential Resources.</p>
+          <p>Every asset works on Built-in, URP and HDRP: none of them contain shaders, materials or any rendering assets.</p>
+
+          <h2 id="stats">Smart Stats System</h2>
+          <p>Add a <code>StatsComponent</code> to a character, then define stats and read them back with their reasoning.</p>
+          <pre><code>var stats = GetComponent&lt;StatsComponent&gt;();
+
+stats.Add("Attack", 20f);
+stats.Get("Attack").AddModifier(StatModifier.Flat(10f, "Iron Sword"));
+stats.Get("Attack").AddModifier(StatModifier.PercentAdd(0.5f, "Rage"));
+
+float value = stats.Get("Attack").Value;              // 45
+
+// Why 45? Ask, and every stage answers.
+StatBreakdown how = stats.Get("Attack").GetBreakdown();</code></pre>
+          <p>Derived stats stay up to date on their own, and a formula that would create a cycle is refused when you register it, with the loop named:</p>
+          <pre><code>stats.AddDerived("Max Health", StatFormula.From("Constitution").Times(10f));</code></pre>
+
+          <h2 id="quest">Smart Quest System</h2>
+          <p>Drop a <code>QuestRunner</code> into the scene. Nothing is static, so a co-op game can run one per player.</p>
+          <pre><code>var quests = GetComponent&lt;QuestRunner&gt;();
+
+quests.Start("wolf-trouble");
+
+// Report progress from anywhere in your game.
+quests.Report("kill", subject: "wolf", amount: 1);
+
+// A locked quest tells you why, instead of just refusing.
+var verdict = quests.CanStart("the-pilgrimage");</code></pre>
+
+          <h2 id="inventory">Smart Inventory System</h2>
+          <p>Define items as ScriptableObjects, then drive an <code>InventoryComponent</code>. Every operation returns a result you can act on rather than a bare bool.</p>
+          <pre><code>var bag = GetComponent&lt;InventoryComponent&gt;();
+
+OperationResult result = bag.Add("iron-sword", quantity: 1);
+if (!result.Success)
+    Debug.Log(result.Error);   // InventoryFull, WeightExceeded, ...
+
+bag.Changed += () =&gt; RefreshHud();</code></pre>
+
+          <h2 id="save">Smart Save System</h2>
+          <p>Two ways to save. Use whichever fits the code you already have.</p>
+          <pre><code>// 1) Key and value.
+SmartSave.Set("coins", 100);
+SmartSave.Save();
+int coins = SmartSave.Get&lt;int&gt;("coins");
+
+// 2) Mark fields and add a SaveableEntity to the object.
 public class PlayerStats : MonoBehaviour
 {
     [SmartSave] public int coins;
     [SmartSave] public float health;
 }
 
-// 3. Save or load anywhere:
-SmartSave.Save();          // write current state
-SmartSave.Load();          // restore last save
-SmartSave.Save("slot-2");  // named save slots</code></pre>
+SmartSave.Load();</code></pre>
+          <p>There is no manager prefab to place and no setup step: with no settings asset present, sensible defaults are built in memory. Before you ship, set your own encryption password in the Smart Save settings — the system warns you once per session if you are still on the one the asset ships with, because that one is public.</p>
 
-          <h3>Advanced Inventory System</h3>
-          <pre><code>// 1. Create items: right-click → Create → RealCut → Item Definition
-// 2. Drop the InventoryPanel prefab into your Canvas.
-// 3. Add items from code:
-Inventory.Main.Add(itemDefinition, amount: 3);
-
-// Listen for changes:
-InventoryEvents.OnItemAdded += item =>
-    Debug.Log($"Picked up {item.DisplayName}");</code></pre>
-
-          <h2 id="settings">⚙️ Settings Reference</h2>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Setting</th><th>Default</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr><td><code>Auto Save</code></td><td>On</td><td>Automatically saves at the configured interval and on application quit.</td></tr>
-                <tr><td><code>Save Interval</code></td><td>120 s</td><td>Seconds between auto-saves. Set to 0 to disable timed saves.</td></tr>
-                <tr><td><code>Encryption</code></td><td>AES-256</td><td>Encryption mode for save files: None, XOR (fast) or AES-256 (secure).</td></tr>
-                <tr><td><code>Save Slots</code></td><td>3</td><td>Number of named slots shown in the built-in save browser.</td></tr>
-                <tr><td><code>Grid Size</code></td><td>10 × 6</td><td>Inventory grid dimensions. Can be changed at runtime.</td></tr>
-                <tr><td><code>Stack Limit</code></td><td>99</td><td>Maximum stack size per item, overridable per ItemDefinition.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="examples">💡 Examples</h2>
-          <p>Every asset ships with commented demo scenes under <code>RealCut/&lt;Asset&gt;/Demos/</code>:</p>
+          <h2 id="in-package">Inside each package</h2>
           <ul>
-            <li><strong>Basic Save</strong> — saving player position, stats and settings in one scene.</li>
-            <li><strong>Save Slots UI</strong> — a ready-made "Continue / New Game" menu you can reskin.</li>
-            <li><strong>RPG Inventory</strong> — grid inventory with equipment slots and tooltips.</li>
-            <li><strong>Crafting Bench</strong> — recipe setup, queues and result callbacks.</li>
+            <li>A <strong>Documentation</strong> folder with the full manual, API reference and changelog as Markdown you can read in the editor or on GitHub.</li>
+            <li>A <strong>demo scene</strong> showing the asset working end to end.</li>
+            <li>The <strong>test suite</strong> — 743 tests across the line. Open <code>Window → General → Test Runner</code> and run them yourself; the claims on this site are the ones those tests assert.</li>
           </ul>
-
-          <h2 id="resources">📄 PDF Guides &amp; Video Tutorials</h2>
-          <p>Each asset package includes a full <strong>PDF manual</strong> in <code>RealCut/&lt;Asset&gt;/Documentation/</code>. Video walkthroughs (installation, quick start, deep dives) are published on the product pages and linked from the PDF.</p>
-          <p>Can't find what you need? <a href="support.html">Contact support</a> — replies typically within 48 hours.</p>
+          <p>Something missing or unclear? <a href="support.html">Contact support</a> — replies typically within 48 hours.</p>
         </div>
       </div>
     </section>

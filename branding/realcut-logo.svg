@@ -1,0 +1,26 @@
+<svg width="400" height="400" viewBox="0 0 400 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>RealCut logo</title>
+<desc>A gold letter R on a dark rounded badge, crossed on top by a bright green diagonal line from top-right to bottom-left.</desc>
+<defs>
+<radialGradient id="bg" cx="0.5" cy="0.42" r="0.75">
+<stop offset="0" stop-color="#1b2734"/>
+<stop offset="1" stop-color="#090e14"/>
+</radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#fcefa0"/>
+<stop offset="0.4" stop-color="#eecb60"/>
+<stop offset="0.72" stop-color="#c9992f"/>
+<stop offset="1" stop-color="#8a5f12"/>
+</linearGradient>
+<linearGradient id="green" x1="300" y1="90" x2="100" y2="310" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#7dfca8"/>
+<stop offset="0.55" stop-color="#2ec76a"/>
+<stop offset="1" stop-color="#128a45"/>
+</linearGradient>
+</defs>
+<rect x="0" y="0" width="400" height="400" rx="92" fill="url(#bg)"/>
+<circle cx="200" cy="200" r="176" fill="none" stroke="#caa23f" stroke-width="3.5" stroke-opacity="0.4"/>
+<text x="200" y="292" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="258" fill="url(#gold)">R</text>
+<line x1="300" y1="90" x2="100" y2="310" stroke="#070b10" stroke-width="46" stroke-linecap="round"/>
+<line x1="300" y1="90" x2="100" y2="310" stroke="url(#green)" stroke-width="29" stroke-linecap="round"/>
+</svg>

@@ -3,112 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RealCut — Professional Unity Tools &amp; Extensions</title>
-  <meta name="description" content="RealCut builds high-quality tools and extensions for the Unity engine, helping game developers ship faster with higher quality.">
+  <title>RealCut — Unity systems that explain themselves</title>
+  <meta name="description" content="RealCut builds Unity gameplay systems that show their working: stats, quests, inventory and saves, each shipped with the test suite that proves it.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta property="og:title" content="RealCut — Unity systems that explain themselves">
+  <meta property="og:description" content="Stats, quests, inventory and saves for Unity. Every asset ships with the test suite that proves it.">
+  <meta property="og:image" content="assets/img/og-banner.png">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="home">
   <header id="site-header" class="site-header"></header>
 
   <main>
-    <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <div class="hero-logo">
-          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#818cf8"/>
-              </linearGradient>
-            </defs>
-            <rect x="4" y="4" width="56" height="56" rx="14" fill="#10161d" stroke="url(#hg)" stroke-width="2.5"/>
-            <path d="M20 16h14c7 0 12 4.5 12 11 0 5-3 8.6-7.6 10.2L48 48h-9l-8-9.5h-3V48h-8V16z
-                     M28 23v9h5.4c3.4 0 5.6-1.8 5.6-4.5S36.8 23 33.4 23H28z" fill="url(#hg)"/>
-            <path d="M12 50 L52 12" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-          </svg>
-        </div>
-        <h1>Building <span class="grad">High-Quality Tools</span><br>for Unity Developers</h1>
-        <p class="tagline">
-          RealCut creates professional, well-documented Unity assets that cut development
-          time — so you can focus on making your game, not rebuilding the basics.
+        <span class="eyebrow reveal">Unity Asset Store publisher</span>
+        <h1 class="reveal" style="--i:1">Unity systems that<br><span class="grad">explain themselves</span></h1>
+        <p class="tagline reveal" style="--i:2">
+          Most gameplay frameworks answer <em>no</em> and leave you guessing. Ours answer
+          <em>why</em>. A stat tells you which modifier produced it. A locked quest tells the
+          player what is missing. That is the whole idea, and every asset here is built on it.
         </p>
-        <div class="hero-actions">
-          <a href="products.html" class="btn btn-primary">View Products</a>
-          <a href="contact.html" class="btn btn-outline">Contact</a>
+        <div class="hero-actions reveal" style="--i:3">
+          <a href="products.html" class="btn btn-solid">Browse the assets</a>
+          <a href="https://assetstore.unity.com/publishers/152456" target="_blank" rel="noopener" class="btn btn-ghost">View on the Asset Store</a>
+        </div>
+        <div class="hero-suite reveal" style="--i:4">
+          <a href="product.html?id=smart-stats" title="Smart Stats System"><img src="assets/img/icons/smart-stats.png" alt="Smart Stats System" width="160" height="160"></a>
+          <a href="product.html?id=smart-quest" title="Smart Quest System"><img src="assets/img/icons/smart-quest.png" alt="Smart Quest System" width="160" height="160"></a>
+          <a href="product.html?id=smart-inventory" title="Smart Inventory System"><img src="assets/img/icons/smart-inventory.png" alt="Smart Inventory System" width="160" height="160"></a>
+          <a href="product.html?id=smart-save" title="Smart Save System"><img src="assets/img/icons/smart-save.png" alt="Smart Save System" width="160" height="160"></a>
         </div>
       </div>
     </section>
 
-    <!-- Why RealCut -->
     <section class="section alt">
       <div class="container">
-        <div class="section-head">
+        <div class="stat-row">
+          <div class="stat reveal"><span class="num" data-count="4">4</span><span class="lbl">assets in the line</span></div>
+          <div class="stat reveal" style="--i:1"><span class="num" data-count="743">743</span><span class="lbl">automated tests</span></div>
+          <div class="stat reveal" style="--i:2"><span class="num">2022.3 →</span><span class="lbl">Unity LTS to Unity 6</span></div>
+          <div class="stat reveal" style="--i:3"><span class="num" data-count="0">0</span><span class="lbl">dependencies in the cores</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
           <span class="eyebrow">Why RealCut</span>
-          <h2>Tools that respect your time</h2>
-          <p>Every asset is built with the same three promises.</p>
+          <h2>Claims you can check</h2>
+          <p>Three things every asset in the line does — not as marketing, as something you can run.</p>
         </div>
         <div class="grid-3">
-          <div class="card feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Plug &amp; Play</h3>
-            <p>Import, drop a prefab, done. Clean APIs and sensible defaults mean you're productive in minutes, not days.</p>
+          <div class="card feature-card reveal">
+            <div class="feature-icon">🔍</div>
+            <h3>It shows its working</h3>
+            <p>Every number comes with a breakdown of the stages that produced it, and every refusal comes with the reason. The explanation is generated from the same calculation as the result, so the two can never disagree.</p>
           </div>
-          <div class="card feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Fully Documented</h3>
-            <p>Step-by-step guides, quick-start tutorials and commented example scenes ship with every asset.</p>
+          <div class="card feature-card reveal" style="--i:1">
+            <div class="feature-icon">🧪</div>
+            <h3>The tests ship with it</h3>
+            <p>743 automated tests across the line, included in the packages so you can run them yourself. Determinism, edge cases and allocation limits are asserted, not asserted <em>about</em>.</p>
           </div>
-          <div class="card feature-card">
-            <div class="feature-icon">🛠️</div>
-            <h3>Actively Maintained</h3>
-            <p>Regular updates for new Unity versions and fast support — typically within 48 hours.</p>
+          <div class="card feature-card reveal" style="--i:2">
+            <div class="feature-icon">🧩</div>
+            <h3>It fits your project</h3>
+            <p>Layered assemblies, no singletons forced into your bootstrap, no ecosystem to adopt. Each asset works alone; they compose if you want them to.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured products -->
-    <section class="section">
+    <section class="section alt">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Assets</span>
-          <h2>Featured Products</h2>
-          <p>Production-ready systems, available on the Unity Asset Store.</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">The line</span>
+          <h2>Four systems</h2>
+          <p>Each one solves a problem most games rebuild from scratch. Each one is independent.</p>
         </div>
         <div id="product-grid" class="product-grid"></div>
       </div>
     </section>
 
-    <!-- About teaser -->
-    <section class="section alt">
+    <section class="section">
       <div class="container">
-        <div class="about-hero">
+        <div class="about-hero reveal">
           <div class="avatar">RC</div>
           <div>
-            <span class="eyebrow">About the publisher</span>
-            <h2 style="margin-bottom:0.6rem">We're RealCut 👋</h2>
-            <p style="color:var(--text-dim); max-width:640px">
-              RealCut is an independent Unity tools studio. Our goal is simple: build the professional,
-              reliable Unity tools we always wished existed — so developers can ship their games faster
-              and with higher quality.
+            <span class="eyebrow">About</span>
+            <h2 style="margin-bottom:.6rem">An independent Unity tools studio</h2>
+            <p class="dim" style="max-width:64ch">
+              RealCut is one developer building the systems he kept rewriting. The rule is
+              simple: nothing ships on a claim that cannot be run. If the description says a
+              calculation is deterministic, there is a test that fails when it stops being so.
             </p>
-            <div style="margin-top:1.2rem">
-              <a href="about.html" class="btn btn-outline">More about RealCut</a>
+            <div style="margin-top:1.3rem">
+              <a href="about.html" class="btn btn-ghost">More about RealCut</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-band">
       <div class="container">
-        <h2>Ready to speed up your workflow?</h2>
-        <p>Browse the catalog or get in touch — we'd love to hear what you're building.</p>
+        <h2>Start with the free one</h2>
+        <p>Smart Inventory System is free — a complete framework, released so you can judge the engineering before paying for anything.</p>
         <div class="hero-actions">
-          <a href="products.html" class="btn btn-primary">View Products</a>
-          <a href="contact.html" class="btn btn-outline">Contact</a>
+          <a href="product.html?id=smart-inventory" class="btn btn-solid">Smart Inventory System</a>
+          <a href="contact.html" class="btn btn-ghost">Get in touch</a>
         </div>
       </div>
     </section>
