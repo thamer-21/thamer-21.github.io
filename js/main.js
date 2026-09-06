@@ -112,7 +112,7 @@ function renderFooter() {
         <span>© ${new Date().getFullYear()} RealCut</span>
         <span>
           <a href="mailto:${EMAIL}">${EMAIL}</a>
-          <a href="https://github.com/thamer-21" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/realcut-studio" target="_blank" rel="noopener">GitHub</a>
         </span>
       </div>
     </div>`;
