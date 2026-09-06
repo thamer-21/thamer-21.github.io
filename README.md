@@ -44,6 +44,6 @@ python -m http.server 8123
 
 ## النشر المجاني
 
-أسهل خيار: **GitHub Pages** — ارفع المجلد لمستودع على حسابك (github.com/thamer-21)
-وفعّل Pages من الإعدادات، وبيكون الموقع على `https://thamer-21.github.io/<repo>`.
+أسهل خيار: **GitHub Pages** — ارفع المجلد لمستودع على حسابك (github.com/realcut-studio)
+وفعّل Pages من الإعدادات، وبيكون الموقع على `https://realcut-studio.github.io/<repo>`.
 يشتغل أيضًا على Netlify أو Cloudflare Pages بدون أي تعديل.
